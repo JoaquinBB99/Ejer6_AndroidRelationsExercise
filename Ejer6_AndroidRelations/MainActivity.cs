@@ -81,7 +81,7 @@ namespace Ejer6_AndroidRelations
         private void PushAndWrite(Object sender, EventArgs e)
         {
             Button botonWriteText = (Button)sender;
-            _introduceText.Text = _introduceText.Text + botonWriteText.Text;
+            _introduceText.Text = _introduceText.Text.ToString() + botonWriteText.Text.ToString();
            
         }
         public override bool OnCreateOptionsMenu(IMenu menu)
