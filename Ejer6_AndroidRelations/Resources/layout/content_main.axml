@@ -7,10 +7,64 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Hello World!" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:columnCount="4">
+    <Button     
+         android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="1"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="2"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="3"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="4"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="5"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="6"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="7"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="8"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="9"/>
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="0"/>
+     <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="+"/>
+     <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="-"/>
+     <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="="/>
+
+    </GridLayout>
 
 </RelativeLayout>

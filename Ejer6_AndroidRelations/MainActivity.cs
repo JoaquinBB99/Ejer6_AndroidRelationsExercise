@@ -9,7 +9,7 @@ using Android.Widget;
 
 namespace Ejer6_AndroidRelations
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "CALCULATOR", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
 
