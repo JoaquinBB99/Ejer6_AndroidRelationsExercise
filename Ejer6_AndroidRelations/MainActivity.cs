@@ -1,6 +1,8 @@
 ﻿using System;
 using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Preferences;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
@@ -26,8 +28,10 @@ namespace Ejer6_AndroidRelations
         private Button _b12;
         private Button _b13;
         private Button _b14;
+        private Button _buttonOK;
         private EditText _introduceText;
-
+        private ISharedPreferences _sharedPreferences;
+        private ISharedPreferencesEditor _sharedPreferencesEditor;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,6 +44,7 @@ namespace Ejer6_AndroidRelations
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
             AddBindForLayout();
+            InstancePreferences();
         }
 
         private void AddBindForLayout()
@@ -58,7 +63,7 @@ namespace Ejer6_AndroidRelations
             _b12 = FindViewById<Button>(Resource.Id.b12);
             _b13 = FindViewById<Button>(Resource.Id.b13);
             _b14 = FindViewById<Button>(Resource.Id.b14);
-
+            _buttonOK = FindViewById<Button>(Resource.Id.buttonOK);
             _introduceText = FindViewById<EditText>(Resource.Id.introduceText);
 
             _b1.Click += PushAndWrite;
@@ -75,9 +80,25 @@ namespace Ejer6_AndroidRelations
             _b12.Click += PushAndWrite;
             _b13.Click += PushAndWrite;
             _b14.Click += PushAndWrite;
-     
-        }
+            _buttonOK.Click += PushAndCode;
+            _buttonOK.Click += ReadSetting;
+            _buttonOK.Click += WriteSetting;
 
+        }
+        private void PushAndCode(Object sender, EventArgs e)
+        {
+            if (_introduceText.Text.Equals("1234"))
+            {               
+               Intent navigateIntent = new Intent(this, typeof(SecondActivity));
+               StartActivity(navigateIntent);
+                //No navegaba correctamente con lo de abajo
+                //SetContentView(Resource.Layout.NavigationScreen);    
+            }
+            else
+            {
+                _introduceText.SetTextColor(Android.Graphics.Color.Red);
+            }
+        }
         private void PushAndWrite(Object sender, EventArgs e)
         {
             Button botonWriteText = (Button)sender;
@@ -89,7 +110,6 @@ namespace Ejer6_AndroidRelations
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
             return true;
         }
-
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
@@ -100,13 +120,26 @@ namespace Ejer6_AndroidRelations
 
             return base.OnOptionsItemSelected(item);
         }
-
         private void FabOnClick(object sender, EventArgs eventArgs)
         {
             View view = (View) sender;
             Snackbar.Make(view, "Replace with your own action", Snackbar.LengthLong)
                 .SetAction("Action", (Android.Views.View.IOnClickListener)null).Show();
+        }       
+        private void ReadSetting(object sender, EventArgs e)
+        {
+            _introduceText.Text = _sharedPreferences.GetString("", string.Empty);
         }
-	}
+        private void WriteSetting(object sender, EventArgs e)
+        {
+            _sharedPreferencesEditor.PutString("", _introduceText.Text);
+            _sharedPreferencesEditor.Apply();
+        }
+        private void InstancePreferences()
+        {
+            _sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(this);
+            _sharedPreferencesEditor = _sharedPreferences.Edit();
+        }
+    }
 }
 
